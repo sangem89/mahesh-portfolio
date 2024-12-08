@@ -36,7 +36,7 @@ $(function(){
 
           $.ajax({
               method: "post",
-              url: "http://127.0.0.1:4040/register-user",
+              url: "http://127.0.0.1:8080/register-user",
               data: user
           })
 
@@ -50,7 +50,7 @@ $(function(){
            
            $.ajax({
                 method: "get",
-                url: "http://127.0.0.1:4040/users",
+                url: "http://127.0.0.1:8080/users",
                 success: (users=>{
                     for(var user of users){
                         if(user.UserId===e.target.value){
@@ -69,7 +69,7 @@ $(function(){
     function GetAppointments(userId){
         $.ajax({
             method:"get",
-            url: `http://127.0.0.1:4040/get-appointments/${userId}`,
+            url: `http://127.0.0.1:8080/get-appointments/${userId}`,
             success: (appointments=>{
                  $("#lblUserId").html($.cookie("username"));
                  appointments.map(appointment=>{
@@ -97,7 +97,7 @@ $(function(){
              
              $.ajax({
                 method: "get",
-                url: "http://127.0.0.1:4040/users",
+                url: "http://127.0.0.1:8080/users",
                 success: (users=>{
                       var user = users.find(record=> record.UserId===userid);
                       if(user){
@@ -147,7 +147,7 @@ $(function(){
 
        $.ajax({
             method: "post", 
-            url: "http://127.0.0.1:4040/add-appointment",
+            url: "http://127.0.0.1:8080/add-appointment",
             data: appointment
        })
 
@@ -162,7 +162,7 @@ $(function(){
 
          $.ajax({
              method: "get",
-             url : `http://127.0.0.1:4040/get-appointment/${e.target.value}`,
+             url : `http://127.0.0.1:8080/get-appointment/${e.target.value}`,
              success: (appointment) =>{
                  $("#txtId").val(appointment.AppointmentId);
                  $("#txtTitle").val(appointment.Title);
@@ -197,7 +197,7 @@ $(function(){
 
        $.ajax({
             method: "put", 
-            url: `http://127.0.0.1:4040/edit-appointment/${$("#txtId").val()}`,
+            url: `http://127.0.0.1:8080/edit-appointment/${$("#txtId").val()}`,
             data: appointment
        })
 
@@ -212,7 +212,7 @@ $(function(){
 
        $.ajax({
            method: "get",
-           url : `http://127.0.0.1:4040/get-appointment/${e.target.value}`,
+           url : `http://127.0.0.1:8080/get-appointment/${e.target.value}`,
            success: (appointment) =>{
                $("#lblTitle").html(appointment.Title);
                $("#lblDescription").html(appointment.Description);
@@ -231,7 +231,7 @@ $(function(){
 
           $.ajax({
              method: "delete",
-             url: `http://127.0.0.1:4040/delete-appointment/${$("#txtId").val()}`
+             url: `http://127.0.0.1:8080/delete-appointment/${$("#txtId").val()}`
           })
           alert("Appointment Deleted Successfully");
           LoadView("../public/user-dashboard.html");
